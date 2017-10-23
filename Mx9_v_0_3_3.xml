@@ -1,0 +1,3292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP5 Patch 5" creationDateTime="2017-10-23T23:21:49.9734832" />
+  <contentHeader name="Mx9_v_0_3_3.project" modificationDateTime="2017-10-21T13:03:26.8127651">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="Device">
+        <resource name="Application">
+          <task name="MainTask" interval="PT0.01S" priority="1">
+            <pouInstance name="PLC_PRG" typeName="">
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+              </documentation>
+            </pouInstance>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/tasksettings" handleUnknown="implementation">
+                <TaskSettings KindOfTask="Cyclic" Interval="t#10ms" IntervalUnit="ms" WithinSPSTimeSlicing="true">
+                  <Watchdog Enabled="false" TimeUnit="ms" Sensitivity="1" />
+                </TaskSettings>
+              </data>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>af8daa94-1069-41d1-8507-2da5c6c8eee7</ObjectId>
+              </data>
+            </addData>
+          </task>
+          <task name="VISU_TASK" interval="PT0.1S" priority="10">
+            <pouInstance name="VisuElems.Visu_Prg" typeName="">
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+              </documentation>
+            </pouInstance>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/tasksettings" handleUnknown="implementation">
+                <TaskSettings KindOfTask="Cyclic" Interval="100" IntervalUnit="ms" WithinSPSTimeSlicing="true">
+                  <Watchdog Enabled="false" TimeUnit="ms" />
+                </TaskSettings>
+              </data>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>3a64766b-b762-423b-a550-ea60c31eead7</ObjectId>
+              </data>
+            </addData>
+          </task>
+          <globalVars name="config">
+            <variable name="crComponent">
+              <type>
+                <derived name="component" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> constants, global vars	</xhtml>
+              </documentation>
+            </variable>
+            <variable name="rWeight">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rWeight_c_p">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="componentNames">
+              <type>
+                <array>
+                  <dimension lower="1" upper="9" />
+                  <baseType>
+                    <string />
+                  </baseType>
+                </array>
+              </type>
+              <initialValue>
+                <arrayValue>
+                  <value>
+                    <simpleValue value="'alfa'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'bravo'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'charlie'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'delta'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'echo'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'foxtrot'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'golf'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'hotel'" />
+                  </value>
+                  <value>
+                    <simpleValue value="'india'" />
+                  </value>
+                </arrayValue>
+              </initialValue>
+            </variable>
+            <variable name="iNames">
+              <type>
+                <UINT />
+              </type>
+              <initialValue>
+                <simpleValue value="1" />
+              </initialValue>
+            </variable>
+            <variable name="components">
+              <type>
+                <array>
+                  <dimension lower="1" upper="50" />
+                  <baseType>
+                    <derived name="component" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="com_idx">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="1" />
+              </initialValue>
+            </variable>
+            <variable name="i">
+              <type>
+                <UINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> index for loop iterations </xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_cmpn_cnt">
+              <type>
+                <array>
+                  <dimension lower="0" upper="9" />
+                  <baseType>
+                    <REAL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> MANUAL MODE VARS </xhtml>
+              </documentation>
+            </variable>
+            <variable name="i_man_count">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="arr_cnt_crnt_points">
+              <type>
+                <array>
+                  <dimension lower="0" upper="9" />
+                  <baseType>
+                    <REAL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_cmpn_choosed">
+              <type>
+                <array>
+                  <dimension lower="0" upper="9" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="i_cmp_cnt">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="manWeightLimit">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="manWeightPrecise">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="filter_settngs_filename">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'filter'" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">	SETTINGS </xhtml>
+              </documentation>
+            </variable>
+            <variable name="filter_arr_length">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="99" />
+              </initialValue>
+            </variable>
+            <variable name="filter_channel_width">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="10" />
+              </initialValue>
+            </variable>
+            <variable name="filter_stable_int">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="100" />
+              </initialValue>
+            </variable>
+            <variable name="flter_stability_koef">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="2" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> distance between input signal and fixed value inside channel array</xhtml>
+              </documentation>
+            </variable>
+            <variable name="iOutDiscrets">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> OUTER DATA </xhtml>
+              </documentation>
+            </variable>
+            <variable name="MAX_WEIGHT">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="1000" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> SYSTEM LIMITS </xhtml>
+              </documentation>
+            </variable>
+            <variable name="MIN_WEIGHT">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="0" />
+              </initialValue>
+            </variable>
+            <variable name="recipeName">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'Receipt'" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> WORK WITH FILESYSTEM </xhtml>
+              </documentation>
+            </variable>
+            <variable name="namesGroup">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'names'" />
+              </initialValue>
+            </variable>
+            <variable name="namesFile">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'component'" />
+              </initialValue>
+            </variable>
+            <variable name="LOG_FILE_PATH">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'C:\tmp\log\'" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> logger files path, upated each progam start due to curent date </xhtml>
+              </documentation>
+            </variable>
+            <variable name="STAT_FILE_PATH">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'C:\tmp\stat\'" />
+              </initialValue>
+            </variable>
+            <variable name="info">
+              <type>
+                <string />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> handle errors, exceptions, inform message</xhtml>
+              </documentation>
+            </variable>
+            <variable name="warning">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="error">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="showError">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bErorTextColor">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bPause">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> buttons </xhtml>
+              </documentation>
+            </variable>
+            <variable name="bRoughBtn">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bPreciseBtn">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="stats">
+              <type>
+                <array>
+                  <dimension lower="0" upper="9" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> statements indicator </xhtml>
+              </documentation>
+            </variable>
+            <variable name="blink">
+              <type>
+                <derived name="BLINK" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">	single blink for pump indicate</xhtml>
+              </documentation>
+            </variable>
+            <variable name="pumps">
+              <type>
+                <array>
+                  <dimension lower="1" upper="4" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> switches for screen activity </xhtml>
+              </documentation>
+            </variable>
+            <variable name="pump_tubes">
+              <type>
+                <array>
+                  <dimension lower="1" upper="4" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="valves">
+              <type>
+                <array>
+                  <dimension lower="1" upper="11" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="component_boxes">
+              <type>
+                <array>
+                  <dimension lower="1" upper="9" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="bPrecise">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bRough">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>d1282dc0-e21a-4f3a-b3b0-e2d7d19bfbeb</ObjectId>
+              </data>
+            </addData>
+            <documentation>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">
+	путь для сохранения файлов в контроллере СПК 207		=			/mnt/ufs/media/mmcblk0p1/    or    /mnt/ufs/media/sda1/
+	путь для сохранения логов в контроллере СПК 207			=			'/mnt/ufs/media/mmcblk0p1/log/'
+	путь для сохранения статистики в контроллере СПК 207	=			'/mnt/ufs/media/mmcblk0p1/stat/'
+	
+	путь для сохранения файлов в компьютере			=			C:\tmp\testRecipe
+	путь для сохранения логов в компьютере			=			'C:\tmp\log\'
+	путь для сохранения статистики в компьютере		=			'C:\tmp\stat\'
+</xhtml>
+            </documentation>
+          </globalVars>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/datatype" handleUnknown="implementation">
+              <dataType name="component">
+                <baseType>
+                  <struct>
+                    <variable name="step">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="code">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="name">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="weight">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="roughWeight">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                  </struct>
+                </baseType>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>25ce6865-2820-4e34-b4b4-d336a5eb0e6e</ObjectId>
+                  </data>
+                </addData>
+              </dataType>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="PLC_PRG" pouType="program">
+                <interface>
+                  <localVars>
+                    <variable name="bStatInit">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bStatStandby">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bStatSettings">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bStatPause">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bStatLoad">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bLog">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bManualMode">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="rTara">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                    <variable name="bTara">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="rClean">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                    <variable name="precisionTimer">
+                      <type>
+                        <derived name="Standard.TON" />
+                      </type>
+                    </variable>
+                    <variable name="sConsole">
+                      <type>
+                        <string />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="'Console output'" />
+                      </initialValue>
+                    </variable>
+                    <variable name="dfa">
+                      <type>
+                        <derived name="dfa" />
+                      </type>
+                      <documentation>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml"> classes </xhtml>
+                      </documentation>
+                    </variable>
+                    <variable name="switch">
+                      <type>
+                        <derived name="switch" />
+                      </type>
+                    </variable>
+                    <variable name="list">
+                      <type>
+                        <derived name="list" />
+                      </type>
+                    </variable>
+                    <variable name="logger">
+                      <type>
+                        <derived name="logger" />
+                      </type>
+                    </variable>
+                    <variable name="recMan">
+                      <type>
+                        <derived name="RecipeManCommands" />
+                      </type>
+                    </variable>
+                    <variable name="filter">
+                      <type>
+                        <derived name="filter" />
+                      </type>
+                    </variable>
+                  </localVars>
+                </interface>
+                <actions>
+                  <action name="blinkJob">
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">IF switch.isPumpRun() THEN 
+	blink( ENABLE := TRUE );		
+	pumps[ switch.idxPump ] := blink.OUT ;
+ELSE
+	blink( ENABLE := FALSE );
+END_IF</xhtml>
+                      </ST>
+                    </body>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                        <ObjectId>2febc1eb-f499-4d72-8dd6-13704e006dcd</ObjectId>
+                      </data>
+                    </addData>
+                  </action>
+                  <action name="a_read">
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">rWeight := MV110_1TD.RdfF1 - rTara;</xhtml>
+                      </ST>
+                    </body>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                        <ObjectId>8a22cc63-5fe0-44f8-8467-1b127d222e5c</ObjectId>
+                      </data>
+                    </addData>
+                  </action>
+                  <action name="z_write">
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">iOutDiscrets := switch.iOut;</xhtml>
+                      </ST>
+                    </body>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                        <ObjectId>5ad9eb16-7b51-420e-8e76-280d66ffe135</ObjectId>
+                      </data>
+                    </addData>
+                  </action>
+                  <action name="y_mach_table">
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">IF bManualMode THEN
+	switch.matchTable();
+END_IF;</xhtml>
+                      </ST>
+                    </body>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                        <ObjectId>43a6022d-1995-4326-a69b-773e9550a64c</ObjectId>
+                      </data>
+                    </addData>
+                  </action>
+                  <action name="b_tara">
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">IF bTara THEN
+	rTara := MV110_1TD.RdfF1;
+	bTara := FALSE;
+END_IF</xhtml>
+                      </ST>
+                    </body>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                        <ObjectId>84a3e7b8-1bed-4be5-99d2-94c3694acfe5</ObjectId>
+                      </data>
+                    </addData>
+                  </action>
+                </actions>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">//a_read();
+//b_tara();
+rClean := filter.clean( rWeight );
+blinkJob();
+// test visu pumps to pump tubes link effect
+FOR i := 1 TO 4 DO
+	IF pumps[i] AND switch.isPumpRun() THEN pump_tubes[i] := TRUE; END_IF
+END_FOR
+
+CASE dfa.iStatementCode OF //набор состояний системы	
+	0:// INIT
+			blink ( TIMEHIGH := T#1S, TIMELOW := T#1S );
+			bStatInit := TRUE;
+			logger.init();
+			recMan.WriteRecipe( namesGroup, namesFile );
+			recMan.WriteRecipe( 'settings', filter_settngs_filename );
+			dfa.exec('checked');
+			
+		IF dfa.bQuitStat THEN // EXIT
+			bStatInit := FALSE;
+		END_IF
+		
+	1:// STANDBY
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			  //StatStandby := TRUE;
+			//logger.writeStat( 'Enter standby mode');
+			//IF logger.done THEN
+				dfa.endEnter();
+			//END_IF
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+			;
+		// ======== END EXIT ======== //
+		END_IF
+		
+	2:// SETTINGS
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			 
+			 
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		
+		
+		// ======== END EXIT ======== //
+		END_IF
+
+	3:// PROGRAMMING
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			 
+			 
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		
+		
+		// ======== END EXIT ======== //
+		END_IF
+		
+	4:// CHOOSING
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		list.man_cmp_mode_job();
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+			IF bManualMode THEN
+				list.man_counters_init();
+			END_IF		
+		// ======== END EXIT ======== //
+		END_IF
+
+	5:// ROUGH_LOADING
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			IF bManualMode THEN 
+				IF manWeightLimit = 0 THEN					
+						dfa.exec('back'); 
+					ELSE
+						switch.on( componentNames[ i_man_count ], TRUE );
+				END_IF
+				
+			END_IF
+			 
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		IF bPause THEN dfa.exec('pause'); END_IF
+		
+		IF bManualMode THEN
+			rWeight := rWeight + 0.01;
+			list.man_mode_count();
+			IF rWeight - rWeight_c_p &gt;= ( manWeightLimit - manWeightPrecise ) THEN
+				dfa.exec( 'done' );
+			END_IF
+		END_IF
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		switch.allOff();
+		
+		// ======== END EXIT ======== //
+		END_IF
+
+	6:// PRECISE_LOADING
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		IF bPause THEN dfa.exec('pause'); END_IF
+		
+		IF bManualMode THEN
+			precisionTimer( IN := TRUE, PT := T#5S );
+			IF precisionTimer.Q THEN
+				switch.on( componentNames[ i_man_count ], FALSE );
+				rWeight := rWeight + 0.005;
+				list.man_mode_count();
+			END_IF
+			IF rWeight - rWeight_c_p &gt;= ( manWeightLimit ) THEN
+				dfa.exec( 'listEnd' );
+			END_IF
+		END_IF
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		precisionTimer( IN := FALSE );
+		switch.allOff();
+		
+		// ======== END EXIT ======== //
+		END_IF
+
+	7:// DONE
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+			 
+			dfa.endEnter();
+			// ======== END ENTER ======== //
+		END_IF		
+		//---------- BODY -----------//
+		
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		
+		
+		// ======== END EXIT ======== //
+		END_IF
+
+	8:// PAUSE
+		IF dfa.bEnterStat THEN
+			 // ======== ENTER =========== //
+				switch.allOff();
+			 	logger.writeStat('Pause mode activated');
+			 IF logger.done THEN
+				dfa.endEnter();
+			 END_IF
+			// ======== END ENTER ======== //
+		END_IF
+		
+		//---------- BODY -----------//
+		IF NOT bPause THEN
+			dfa.exec('back');			
+			//switch.on( switch.sLastCode, switch.bLastRough );
+		END_IF
+		
+		//------- END_BODY ----------//
+		
+		IF dfa.bQuitStat THEN 
+		// ========== EXIT =========== //
+		
+		
+		// ======== END EXIT ======== //
+		END_IF
+
+	ELSE	// состояние по-умолчанию
+		
+END_CASE
+IF dfa.bQuitStat THEN // EXIT STATEMENT
+	stats[dfa.iStatementCode] := FALSE;
+	dfa.finishTransition();
+	stats[dfa.iStatementCode] := TRUE;
+END_IF
+y_mach_table();
+z_write();</xhtml>
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>a1063c3b-bfc1-498e-abeb-b46f42e9ce3c</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="dfa" pouType="functionBlock">
+                <interface>
+                  <outputVars>
+                    <variable name="iStatementCode">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="bEnterStat">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="bQuitStat">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                  </outputVars>
+                  <localVars>
+                    <variable name="sCrntStatement">
+                      <type>
+                        <string />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="'INIT'" />
+                      </initialValue>
+                    </variable>
+                    <variable name="sPrevStatement">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="i">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="0" />
+                      </initialValue>
+                    </variable>
+                    <variable name="iFROM">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="0" />
+                      </initialValue>
+                    </variable>
+                    <variable name="iTRANSITION">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="1" />
+                      </initialValue>
+                    </variable>
+                    <variable name="iTO">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="2" />
+                      </initialValue>
+                    </variable>
+                    <variable name="arStatements">
+                      <type>
+                        <array>
+                          <dimension lower="0" upper="99" />
+                          <baseType>
+                            <string />
+                          </baseType>
+                        </array>
+                      </type>
+                      <initialValue>
+                        <arrayValue>
+                          <value>
+                            <simpleValue value="'INIT'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'SETTINGS'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PROGRAMMING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'CHOOSING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PRECISE_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'DONE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PAUSE'" />
+                          </value>
+                        </arrayValue>
+                      </initialValue>
+                    </variable>
+                    <variable name="arTransitionTable">
+                      <type>
+                        <array>
+                          <dimension lower="0" upper="99" />
+                          <dimension lower="0" upper="2" />
+                          <baseType>
+                            <string />
+                          </baseType>
+                        </array>
+                      </type>
+                      <initialValue>
+                        <arrayValue>
+                          <value>
+                            <simpleValue value="'INIT'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'checked'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'set'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'SETTINGS'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'start'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'CHOOSING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'pause'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PAUSE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'SETTINGS'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'program'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PROGRAMMING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'SETTINGS'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'exit'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PROGRAMMING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'exit'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PROGRAMMING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'init'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'INIT'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'CHOOSING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'exit'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'CHOOSING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'load'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'pause'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PAUSE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'done'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PRECISE_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'listEnd'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'DONE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PRECISE_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'next'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'ROUGH_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PRECISE_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'pause'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PAUSE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PRECISE_LOADING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'listEnd'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'DONE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'DONE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'again'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'CHOOSING'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'DONE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'exit'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'STANDBY'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'PAUSE'" />
+                          </value>
+                          <value>
+                            <simpleValue value="'back'" />
+                          </value>
+                          <value>
+                            <simpleValue value="''" />
+                          </value>
+                        </arrayValue>
+                      </initialValue>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="endEnter" ObjectId="bee81a6b-ea0a-40b3-8fb4-6a1beea6ef22">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="endEnter" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">bEnterStat := FALSE;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="exec" ObjectId="6d8aeac2-8287-44e9-b7cd-613cde17569c">
+                      <interface>
+                        <inputVars>
+                          <variable name="sTransition">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="exec" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i:= 0 TO 99 DO
+	IF arTransitionTable[i, iFROM] = '' THEN
+		RETURN;
+	END_IF
+	IF arTransitionTable[i, iFROM] = sCrntStatement AND arTransitionTable[i, iTRANSITION] = sTransition THEN
+		
+		sCrntStatement := SEL ( sTransition = 'back', arTransitionTable[i, iTO], sPrevStatement );
+		
+		sPrevStatement := arTransitionTable[i, iFROM];
+		bQuitStat := TRUE;
+		RETURN;
+	END_IF
+END_FOR</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="finishTransition" ObjectId="0938e404-0e18-4449-a82b-5630f82649c8">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="finishTransition" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i:= 0 TO 99 DO
+	IF arStatements[i] = '' THEN
+		RETURN;		
+	END_IF
+	IF arStatements[i] = sCrntStatement THEN
+		iStatementCode := i;
+		bQuitStat := FALSE;
+		bEnterStat := TRUE;
+		RETURN;
+	END_IF
+END_FOR</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>8a0b64e8-34bc-4c3d-a18b-8a13deb98a2d</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="switch" pouType="functionBlock">
+                <interface>
+                  <inputVars>
+                    <variable name="iIn">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                  </inputVars>
+                  <outputVars>
+                    <variable name="iOut">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="idxPump">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="sLastCode">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="bLastRough">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                  </outputVars>
+                  <localVars>
+                    <variable name="i">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                  </localVars>
+                  <documentation>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml"> Набор переключателей</xhtml>
+                  </documentation>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="allOff" ObjectId="c097e0a5-95cd-4745-943b-3119daadc8ec">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="allOff" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                        <documentation>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">выключает все 16 переключателей</xhtml>
+                        </documentation>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">iOut := 0;
+FOR i := 1 TO 11 DO
+	IF i &lt; 5 THEN
+		pumps[ i ] := FALSE;
+		pump_tubes[ i ] := FALSE;
+	END_IF
+	IF i &lt; 10 THEN
+		component_boxes[ i ] := FALSE;
+	END_IF
+	valves[ i ] := FALSE;
+END_FOR
+bPrecise := FALSE;
+bRough := FALSE;
+idxPump := 0;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="on" ObjectId="1638610e-2235-46ed-92c7-c7e78d1e6f8b">
+                      <interface>
+                        <inputVars>
+                          <variable name="code">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                          <variable name="rough">
+                            <type>
+                              <BOOL />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="on" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                        <documentation>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">устанавливает выключатели в ON</xhtml>
+                        </documentation>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">bRough := rough;
+bPrecise := NOT rough;
+
+sLastCode := code;
+bLastRough := rough;
+
+CASE getCodeIdx( code ) OF //набор переключателей в зависимости от кода
+	1:	
+			component_boxes[1] := TRUE;
+			valves[1]	:= TRUE;
+			valves[8]	:= TRUE;
+			pump_tubes[1] := TRUE;
+			idxPump := 1;			
+	2:
+			component_boxes[2] := TRUE;
+			valves[2]	:= TRUE;
+			valves[8]	:= TRUE;
+			pump_tubes[1] := TRUE;
+			idxPump := 1;			
+	3:
+			component_boxes[3] := TRUE;
+			valves[3]	:= TRUE;
+			valves[8]	:= TRUE;
+			pump_tubes[1] := TRUE;
+			idxPump := 1;
+	4:
+			component_boxes[4] := TRUE;
+			valves[4]	:= TRUE;
+			valves[8]	:= TRUE;
+			pump_tubes[1] := TRUE;
+			idxPump := 1;
+	5:
+			component_boxes[5] := TRUE;
+			valves[5]	:= TRUE;
+			valves[11]	:= TRUE;
+			pump_tubes[2] := TRUE;
+			idxPump := 2;
+	6:
+			component_boxes[6] := TRUE;
+			valves[6]	:= TRUE;
+			valves[11]	:= TRUE;
+			pump_tubes[2] := TRUE;
+			idxPump := 2;
+	7:
+			component_boxes[7] := TRUE;
+			valves[7]	:= TRUE;
+			valves[11]	:= TRUE;
+			pump_tubes[2] := TRUE;
+			idxPump := 2;
+	8:
+			component_boxes[8] := TRUE;
+			valves[10]	:= TRUE;
+			pump_tubes[3] := TRUE;
+			idxPump := 3;
+	9:
+			component_boxes[9] := TRUE;
+			valves[9]	:= TRUE;
+			pump_tubes[4] := TRUE;
+			idxPump := 4;
+	;
+	ELSE //	такого кода нет 
+	//TODO - Error, example:
+	error := 'ERROR: no such code of the ingredient. Program stopped.';
+	showError := TRUE;
+	allOff();
+END_CASE</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="getCodeIdx" ObjectId="e32947eb-d577-4a91-8cf6-2a27548af9d5">
+                      <interface>
+                        <returnType>
+                          <INT />
+                        </returnType>
+                        <inputVars>
+                          <variable name="code">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/accessmodifiers" handleUnknown="implementation">
+                            <AccessModifiers Private="true" />
+                          </data>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="getCodeIdx" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i := 1 TO 9 DO
+	IF componentNames[i] = code THEN
+		getCodeIdx := i;
+		RETURN;
+	END_IF
+END_FOR
+getCodeIdx :=  0;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="isPumpRun" ObjectId="d3deaf2b-d34d-45fd-9740-4dca6153ec62">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="isPumpRun" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">isPumpRun := idxPump &gt; 0 AND idxPump &lt; 5;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="matchTable" ObjectId="d57ff8fa-88e8-4dd6-80af-3938cf1b66c1">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="matchTable" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">iOut.0:= component_boxes[1];
+iOut.1:= component_boxes[2];
+iOut.2 := component_boxes[3];
+iOut.3 := component_boxes[4];
+iOut.4 := component_boxes[5];
+iOut.5 := component_boxes[6];
+iOut.6 := component_boxes[7];
+iOut.7 := component_boxes[8];
+iOut.8 := component_boxes[9];
+
+iOut.10 := bPrecise;
+iOut.9 := bRough;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>837144be-4a6f-42c3-add1-f230135a7f48</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="list" pouType="functionBlock">
+                <interface>
+                  <inputVars>
+                    <variable name="ptToSwitch">
+                      <type>
+                        <pointer>
+                          <baseType>
+                            <derived name="switch" />
+                          </baseType>
+                        </pointer>
+                      </type>
+                    </variable>
+                  </inputVars>
+                  <localVars>
+                    <variable name="bPrgDone">
+                      <type>
+                        <BOOL />
+                      </type>
+                      <documentation>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">way:Way;</xhtml>
+                      </documentation>
+                    </variable>
+                    <variable name="bActive">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="iPrgSteps">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iPrgIdx">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iLinePrgList">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iLine">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iTotalWeight">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iCleanIdx">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iCrntPoint">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="iDirection">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="1" />
+                      </initialValue>
+                    </variable>
+                    <variable name="iArrLength">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="50" />
+                      </initialValue>
+                    </variable>
+                    <variable name="iPrgAmount">
+                      <type>
+                        <INT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="100" />
+                      </initialValue>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="getPrgIdx" ObjectId="b0d6b491-22a4-4bda-942c-f313ecc41c1c">
+                      <interface>
+                        <returnType>
+                          <INT />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="getPrgIdx" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">getPrgIdx := iLinePrgList;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="getLineFromPrgArr" ObjectId="103db660-e484-4832-a7cb-3ab0eb29d458">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <inputVars>
+                          <variable name="i">
+                            <type>
+                              <INT />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="getLineFromPrgArr" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*currentIngredientName := arrayOfIngr[i].nameOfIngr;
+currentWeight := STRING_TO_INT(arrayOfIngr[i].weightOfIngr);
+//strCrntWay := arrayOfIngr[i].isDissolve;
+way.setWay(arrayOfIngr[i].isDissolve);
+ptToSwitch^.iWayIdx := way.getWayId();
+currentTimeMixing := STRING_TO_TIME(arrayOfIngr[i].timeOfMixing);
+message := arrayOfIngr[i].addMessage;*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="stop" ObjectId="15ce24ad-6252-47a1-98e0-5ff2b15fa8f6">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="stop" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">bActive := FALSE;
+iPrgIdx := 0;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="checkPrgArr" ObjectId="0f0d2641-9320-4a00-aa3e-a226d2292160">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="checkPrgArr" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*currentProgramIdx:=0;
+currentPrgSteps := 0;
+iTotalWeight := 0;
+IF LEN(arrayOfIngr[0].stepNum) = 0 THEN
+		(* Поставить выброс ошибки в ответ на пустую или неправильную программу*)
+		RETURN;		
+END_IF
+	
+FOR iLine:= 0 TO 100 DO		
+	IF 	LEN(arrayOfIngr[iLine].stepNum) &gt; 0 THEN
+		currentPrgSteps := currentPrgSteps + 1;
+		iTotalWeight := iTotalWeight + STRING_TO_INT(arrayOfIngr[iLine].weightOfIngr);
+		(* Поставить выброс ошибки если вес превышает максимально допустимый *)
+	ELSE
+		RETURN;	
+	END_IF
+END_FOR*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="clearList" ObjectId="4c3aba0a-280f-41f0-bfeb-157417f7be3c">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="clearList" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*FOR iCleanIdx:=0 TO iArrLength DO
+	arrayOfIngr[iCleanIdx].stepNum:='';
+	arrayOfIngr[iCleanIdx].nameOfIngr:='';
+	arrayOfIngr[iCleanIdx].weightOfIngr:='';
+	arrayOfIngr[iCleanIdx].isDissolve:='';
+	arrayOfIngr[iCleanIdx].timeOfMixing:='';
+	arrayOfIngr[iCleanIdx].addMessage:='';
+END_FOR
+ iCleanIdx:=0;
+ iLine:=0;*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="clearLine" ObjectId="8dfccb57-f560-4c0f-8514-d61b32e115a6">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="clearLine" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*IF iLine &gt; 0 THEN
+	iLine:=iLine - 1;
+END_IF
+arrayOfIngr[iLine].stepNum:='';
+arrayOfIngr[iLine].nameOfIngr:='';
+arrayOfIngr[iLine].weightOfIngr:='';
+arrayOfIngr[iLine].isDissolve:='';
+arrayOfIngr[iLine].timeOfMixing:='';
+arrayOfIngr[iLine].addMessage:='';*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="writeLine" ObjectId="f565a3b1-88d8-4044-9934-dfed731c3e5b">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="writeLine" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*
+arrayOfIngr[iLine].stepNum := CONCAT('Step ', INT_TO_STRING(iLine+1));
+arrayOfIngr[iLine].nameOfIngr := currentIngredientName;
+arrayOfIngr[iLine].weightOfIngr := INT_TO_STRING(currentWeight);
+arrayOfIngr[iLine].isDissolve := way.getWay();
+currentTimeMixing := TimeInput(inputTime);
+arrayOfIngr[iLine].timeOfMixing := TIME_TO_STRING(currentTimeMixing);
+arrayOfIngr[iLine].addMessage := message;
+
+iLine := iLine + 1;	
+IF iLine &gt; iArrLength THEN
+	iLine := 0;
+END_IF
+*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="keepGoing" ObjectId="cb7caec3-e13e-431e-9796-f7b798b2c778">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <inputVars>
+                          <variable name="iWeight">
+                            <type>
+                              <INT />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="keepGoing" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">keepGoing := FALSE;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="next" ObjectId="1feac098-c8e1-4aa4-bdb2-79d617cf3922">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="next" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*iPrgIdx := iPrgIdx + iDirection;
+IF isLoad() AND iPrgIdx = iPrgSteps THEN
+	turnBack();
+END_IF
+IF isUnload() AND iPrgIdx &lt; 0 THEN
+	stop();
+	RETURN;
+END_IF
+getLineFromPrgArr(iPrgIdx);
+iCrntPoint := iCrntPoint + (STRING_TO_INT(arrayOfIngr[iPrgIdx].weightOfIngr) * iDirection);*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="start" ObjectId="6701be80-7379-424b-a0ad-8219332ae2bb">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="start" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">(*bActive := TRUE;
+iDirection := 1;
+iPrgIdx := 0;
+iPrgSteps := currentPrgSteps;
+iCrntPoint := STRING_TO_INT(arrayOfIngr[iPrgIdx].weightOfIngr);
+getLineFromPrgArr(iPrgIdx);*)</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="man_cmp_mode_job" ObjectId="4cd69c32-d486-469d-bb12-fa43f9cec764">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="man_cmp_mode_job" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i := 1 TO 9 DO
+	arr_cmpn_choosed[i] := FALSE;
+END_FOR
+arr_cmpn_choosed[iNames] := TRUE;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="clean_counters" ObjectId="c074f7cf-a481-43de-917d-06a75172d7a5">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="clean_counters" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i := 1 TO 9 DO
+	arr_cmpn_cnt[i] := 0;
+	arr_cnt_crnt_points[i] := 0;
+	rWeight_c_p := 0;
+END_FOR</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="man_mode_count" ObjectId="7244edfb-518d-481a-9dd7-d7194b80e885">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="man_mode_count" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">arr_cmpn_cnt[ i_man_count ] := arr_cnt_crnt_points[ i_man_count ] + rWeight - rWeight_c_p;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="man_counters_init" ObjectId="396f672f-3c7d-4f40-9968-3a9854c806e3">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="man_counters_init" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">rWeight_c_p := rWeight;
+arr_cnt_crnt_points[iNames] := arr_cmpn_cnt[iNames];
+i_man_count := iNames;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>d2a26bb6-bc43-404c-a13e-c7cabe90e95c</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="logger" pouType="functionBlock">
+                <interface>
+                  <outputVars>
+                    <variable name="done">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="date_Y_M_D">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                  </outputVars>
+                  <localVars>
+                    <variable name="filename">
+                      <type>
+                        <derived name="FILE.CAA.FILENAME" />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="LOG_FILE_PATH" />
+                      </initialValue>
+                    </variable>
+                    <variable name="message">
+                      <type>
+                        <string />
+                      </type>
+                    </variable>
+                    <variable name="xFileStdInit">
+                      <type>
+                        <BOOL />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="FALSE" />
+                      </initialValue>
+                    </variable>
+                    <variable name="uiFileStdState">
+                      <type>
+                        <UINT />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="0" />
+                      </initialValue>
+                    </variable>
+                    <variable name="fOpen">
+                      <type>
+                        <derived name="FILE.Open" />
+                      </type>
+                    </variable>
+                    <variable name="fWrite">
+                      <type>
+                        <derived name="FILE.Write" />
+                      </type>
+                    </variable>
+                    <variable name="fRead">
+                      <type>
+                        <derived name="FILE.Read" />
+                      </type>
+                    </variable>
+                    <variable name="fClose">
+                      <type>
+                        <derived name="FILE.Close" />
+                      </type>
+                    </variable>
+                    <variable name="SetPos">
+                      <type>
+                        <derived name="FILE.SetPos" />
+                      </type>
+                    </variable>
+                    <variable name="hFile">
+                      <type>
+                        <derived name="FILE.CAA.HANDLE" />
+                      </type>
+                    </variable>
+                    <variable name="szFileSize">
+                      <type>
+                        <derived name="FILE.CAA.SIZE" />
+                      </type>
+                      <initialValue>
+                        <simpleValue value="0" />
+                      </initialValue>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="exitLog" ObjectId="5a7998fa-f65c-4e30-9ed4-61731dd6d3f3">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="exitLog" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">xFileStdInit	:= FALSE;
+uiFileStdState	:= 0;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="setPath" ObjectId="c0a3d83d-da5d-4cce-a6af-33a7a14ef663">
+                      <interface>
+                        <inputVars>
+                          <variable name="path">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="setPath" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">filename := path;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="write" ObjectId="e35d544c-c58c-4e96-8c54-da71b1d10501">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <inputVars>
+                          <variable name="data">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="write" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">IF NOT xFileStdInit THEN
+	done :=	FALSE;
+
+	fOpen(xExecute:=FALSE);
+
+	fClose(xExecute:=FALSE);
+
+	fWrite(xExecute:=FALSE);
+
+	fRead(xExecute:=FALSE);
+
+	xFileStdInit:=TRUE;
+
+	uiFileStdState:=0;
+
+ELSE
+	CASE uiFileStdState OF
+
+		0: (* open file *)
+
+         	fOpen.sFileName:= filename;
+	
+			fOpen.eFileMode:= FILE.MODE.MAPPD;
+
+			fOpen.xExclusive:=TRUE;
+
+			fOpen( xExecute:=TRUE );
+
+				IF fOpen.xDone THEN
+
+					hFile := fOpen.hFile;
+					
+					uiFileStdState := 2;
+
+				END_IF
+
+			   	IF fOpen.xError THEN (* error handling*)
+					
+					fOpen(xExecute:=FALSE);
+					
+					uiFileStdState := 1;
+
+				  	error := 'error file opening, trying to create...' ;
+
+			   	END_IF
+				1:(* create file - if not exists *)
+
+				   fOpen.eFileMode:= FILE.MODE.MWRITE;
+				   
+				   fOpen( xExecute:=TRUE );
+				   
+				   IF fOpen.xDone THEN
+					   
+						fOpen( xExecute := FALSE );
+						
+						uiFileStdState := 0;
+						
+						error := '';
+
+					END_IF
+					
+					IF fOpen.xError THEN
+						fOpen( xExecute := FALSE );
+						
+						uiFileStdState := 4;
+	
+						error := 'error file creating, log failed' ;
+
+					END_IF
+
+                2:(* write text in the file *)
+					fWrite.hFile := hFile;
+					message := Standard.CONCAT ( data, '$r' );
+					message := Standard.CONCAT ( Standard.CONCAT ( now(), ' ' ) , message );
+					fWrite.pBuffer:=ADR(message);
+					szFileSize:= INT_TO_UINT( Standard.LEN( message ) );
+
+					fWrite.szSize := szFileSize;
+                               
+				   	fWrite.udiTimeOut:=100000;                     (* 100ms Timeout *)
+
+				   	fWrite( xExecute:=TRUE);
+
+					   IF fWrite.xDone THEN
+						   
+						   SetPos( hFile := hFile, udiPos := 2);
+	
+						   uiFileStdState:=3;
+
+					   END_IF
+
+					   IF fWrite.xError THEN
+
+									   (* error handling*)
+
+									   ;
+
+					   END_IF
+
+                
+                3:             (* close file  *)
+
+					   fClose.hFile:= hFile;
+
+					   fClose( xExecute:=TRUE);
+
+					   IF fClose.xDone THEN
+
+									   uiFileStdState:=4;
+
+					   END_IF
+
+					   IF fClose.xError THEN
+
+									   (* error handling*)
+
+									   ;
+
+					   END_IF
+
+				4:   (* end of log *)
+						exitLog();
+						done  := TRUE;
+                END_CASE
+
+
+END_IF</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="now" ObjectId="51309518-c633-4b95-b900-6fa2dcdcee76">
+                      <interface>
+                        <returnType>
+                          <string />
+                        </returnType>
+                        <localVars>
+                          <variable name="Date_and_time_in_seconds">
+                            <type>
+                              <UDINT />
+                            </type>
+                            <documentation>
+                              <xhtml xmlns="http://www.w3.org/1999/xhtml"> now timestamp </xhtml>
+                            </documentation>
+                          </variable>
+                          <variable name="Local_date_time_seconds">
+                            <type>
+                              <UDINT />
+                            </type>
+                          </variable>
+                          <variable name="Date_and_Time_result">
+                            <type>
+                              <UDINT />
+                            </type>
+                          </variable>
+                          <variable name="Local_date_time_from_secs">
+                            <type>
+                              <derived name="SYSTIMEDATE" />
+                            </type>
+                          </variable>
+                          <variable name="Date_and_time_format">
+                            <type>
+                              <DT />
+                            </type>
+                          </variable>
+                          <variable name="Date_and_time_string">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </localVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="now" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">// Get time in seconds since 1970 :
+Date_and_time_in_seconds := SysTimeRtcGet(Date_and_Time_result);
+IF Date_and_Time_result &lt;&gt; 0 THEN
+RETURN;
+END_IF
+
+// Convert UTC seconds to local time seconds, regarding Timezone and Summer time :
+Date_and_Time_result := SysTimeRtcConvertUtcToLocal(Date_and_time_in_seconds, Local_date_time_seconds);
+IF Date_and_Time_result &lt;&gt; 0 THEN
+RETURN;
+END_IF
+
+// Convert the UTC seconds to a DATE_AND_TIME variable dt#yyyy-mm-dd-hh:mm:ss :
+Date_and_time_format := UDINT_TO_DT(Local_date_time_seconds);
+
+// Convert DATE_AND_TIME to a String :
+Date_and_time_string := DT_TO_STRING(Date_and_time_format);
+
+date_Y_M_D := Standard.MID( Date_and_time_string, 10, 4 );
+
+now := REPLACE ( Date_and_time_string, '', 3, 1 );</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="writeStat" ObjectId="0eb09bcb-08ce-4609-b161-4d5afe6cfaf0">
+                      <interface>
+                        <inputVars>
+                          <variable name="data">
+                            <type>
+                              <string />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="writeStat" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">setPath( STAT_FILE_PATH );
+write( data );
+setPath( LOG_FILE_PATH );</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="init" ObjectId="ab593112-a882-43db-9b52-d5fa1684bf9a">
+                      <interface>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="init" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">now();
+LOG_FILE_PATH := Standard.CONCAT ( Standard.CONCAT( LOG_FILE_PATH, date_Y_M_D ), '.txt');
+STAT_FILE_PATH := Standard.CONCAT ( Standard.CONCAT( STAT_FILE_PATH, date_Y_M_D ), '.txt');</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>a1494be5-c5b7-439a-89dc-720d10db7f86</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="filter" pouType="functionBlock">
+                <interface>
+                  <inputVars>
+                    <variable name="rIn">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                  </inputVars>
+                  <outputVars>
+                    <variable name="rOut">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                  </outputVars>
+                  <localVars>
+                    <variable name="arr">
+                      <type>
+                        <array>
+                          <dimension lower="0" upper="99" />
+                          <baseType>
+                            <REAL />
+                          </baseType>
+                        </array>
+                      </type>
+                    </variable>
+                    <variable name="i">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="arMax">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                    <variable name="arMin">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                    <variable name="rFixed">
+                      <type>
+                        <REAL />
+                      </type>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="array_push" ObjectId="ef80bdfb-0e09-45cb-a617-838f421413d4">
+                      <interface>
+                        <inputVars>
+                          <variable name="rInValue">
+                            <type>
+                              <REAL />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <localVars>
+                          <variable name="i">
+                            <type>
+                              <INT />
+                            </type>
+                          </variable>
+                        </localVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="array_push" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">arMax := arr[filter_arr_length]; arMin := arr[filter_arr_length];
+FOR i := filter_arr_length TO 0 BY -1 DO
+	arMax := MAX ( arr[i], arMax );
+	arMin := MIN ( arr[i], arMin );
+	arr[i] := SEL ( i = 0, arr[i - 1], rInValue );
+END_FOR</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="isStable" ObjectId="ff9ae61a-f9bc-45ba-94de-3379d8c26a25">
+                      <interface>
+                        <returnType>
+                          <BOOL />
+                        </returnType>
+                        <inputVars>
+                          <variable name="rInput">
+                            <type>
+                              <REAL />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="isStable" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">isStable := 
+		arMax &gt;= arMin
+	AND ABS ( arMax - arMin ) &lt;= filter_channel_width  
+	AND	ABS ( rInput - rFixed ) &lt;= flter_stability_koef
+;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="clean" ObjectId="a1cdcf68-e524-4447-b34a-6052799717ef">
+                      <interface>
+                        <returnType>
+                          <REAL />
+                        </returnType>
+                        <inputVars>
+                          <variable name="rRaw">
+                            <type>
+                              <REAL />
+                            </type>
+                          </variable>
+                        </inputVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="clean" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">IF isStable( rRaw ) THEN
+	filter_stable_int := SEL ( filter_stable_int &gt;= filter_arr_length * 2, filter_stable_int + 1, filter_stable_int ) ;
+	clean := rFixed;
+	IF filter_stable_int &gt;= filter_arr_length * 2 THEN
+		RETURN;
+	END_IF
+ELSE
+	filter_stable_int := 0;
+END_IF
+array_push( rRaw );
+rFixed := count();
+clean := rRaw;</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                    <Method name="count" ObjectId="3425cab6-554a-45e3-8115-f233a2777792">
+                      <interface>
+                        <returnType>
+                          <REAL />
+                        </returnType>
+                        <localVars>
+                          <variable name="i">
+                            <type>
+                              <INT />
+                            </type>
+                          </variable>
+                          <variable name="sum">
+                            <type>
+                              <REAL />
+                            </type>
+                          </variable>
+                        </localVars>
+                        <addData>
+                          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                            <Attributes>
+                              <Attribute Name="object_name" Value="count" />
+                            </Attributes>
+                          </data>
+                        </addData>
+                      </interface>
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i := 0 TO filter_arr_length DO
+	sum := sum + arr[i];
+END_FOR
+count := sum / ABS ( filter_arr_length + 1 );</xhtml>
+                        </ST>
+                      </body>
+                      <addData />
+                    </Method>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>3a3767c5-5487-4911-89d1-72a4d57f0484</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/libraries" handleUnknown="implementation">
+              <Libraries>
+                <Library Name="#Standard" Namespace="Standard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Standard, * (System)" />
+                <Library Name="#System_VisuElems" Namespace="VisuElems" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElems, 3.5.5.50 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemMeter" Namespace="VisuElemMeter" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemMeter, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemsSpecialControls" Namespace="VisuElemsSpecialControls" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemsSpecialControls, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemsWinControls" Namespace="VisuElemsWinControls" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemsWinControls, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemTextEditor" Namespace="VisuElemTextEditor" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemTextEditor, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemTrace" Namespace="VisuElemTrace" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemTrace, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuNativeControl" Namespace="VisuNativeControl" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuNativeControl, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemsAlarm" Namespace="VisuElemsAlarm" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemsAlarm, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#System_VisuElemCamDisplayer" Namespace="VisuElemCamDisplayer" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemCamDisplayer, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae">
+                  <Parameters>
+                    <Parameter Name="GC_POINTS_PER_CAM" Value="100" />
+                  </Parameters>
+                </Library>
+                <Library Name="#System_VisuElem3DPath" Namespace="VisuElem3DPath" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElem3DPath, 3.5.4.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae">
+                  <Parameters>
+                    <Parameter Name="GC_POINTS_PER_POLYGON" Value="100" />
+                  </Parameters>
+                </Library>
+                <Library Name="#System_VisuElemsDateTime" Namespace="VisuElemsDateTime" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="VisuElemsDateTime, 3.5.5.0 (System)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#system_visuinputs" Namespace="visuinputs" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="visuinputs, 3.5.5.0 (system)" ResolverGuid="2717eb6a-dd07-4c66-8d8d-cacebd7b18ae" />
+                <Library Name="#VisuDialogs" Namespace="VisuDialogs" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="false" LinkAllContent="false" DefaultResolution="VisuDialogs, * (System)" />
+                <Library Name="#CAA File" Namespace="FILE" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="CAA File, * (CAA Technical Workgroup)" />
+                <Library Name="#RecipeManagement" Namespace="Recipe_Management" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="true" LinkAllContent="false" DefaultResolution="Recipe Management, 3.5.5.0 (System)" />
+                <Library Name="#Util" Namespace="Util" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Util, * (System)">
+                  <Parameters>
+                    <Parameter Name="IBLOCKSIZE" Value="22800" />
+                  </Parameters>
+                </Library>
+                <Library Name="#SysTimeRtc" Namespace="SysTimeRtc" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="SysTimeRtc, * (System)" />
+                <Library Name="#SysFile" Namespace="SysFile" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="SysFile, * (System)" />
+                <Library Name="#IoStandard" Namespace="IoStandard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="true" LinkAllContent="true" DefaultResolution="IoStandard, 3.5.5.0 (System)" />
+                <Library Name="IoDrvModbus, 3.5.5.0 (3S - Smart Software Solutions GmbH)" Namespace="IoDrvModbus" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="true" LinkAllContent="false">
+                  <Parameters>
+                    <Parameter Name="MAX_MODBUS_CHANNELS" Value="100" />
+                  </Parameters>
+                </Library>
+                <Library Name="Mx110Assistant, 3.5.4.0 (Owen)" Namespace="Mx110Assistant" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="false" LinkAllContent="false" />
+                <Library Name="Mx110_Drivers, 3.5.4.0 (Owen)" Namespace="Mx110_Drivers" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="true" LinkAllContent="false" />
+                <Library Name="#BreakpointLogging" Namespace="BPLog" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="true" SystemLibrary="true" LinkAllContent="false" DefaultResolution="Breakpoint Logging Functions, 3.5.5.0 (3S - Smart Software Solutions GmbH)" />
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>1f56980b-8c34-4a57-bac6-2a37a58a0389</ObjectId>
+                  </data>
+                </addData>
+              </Libraries>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/buildproperties" handleUnknown="implementation">
+              <BuildProperties>
+                <CompilerDefines>VISU_USEWSTRING</CompilerDefines>
+              </BuildProperties>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+              <ObjectId>1e8c8e4f-86e1-4309-b3d2-8f30b8d3ced7</ObjectId>
+            </data>
+          </addData>
+        </resource>
+        <addData>
+          <data name="Device" handleUnknown="discard">
+            <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+              <DeviceType>
+                <DeviceIdentification>
+                  <Type>4096</Type>
+                  <Id>0000 0001</Id>
+                  <Version>3.5.5.50</Version>
+                </DeviceIdentification>
+                <Connector moduleType="256" interface="Common.PCI" connectorId="0">
+                  <HostParameterSet />
+                </Connector>
+                <Connector moduleType="769" interface="SafetyInterface" connectorId="1">
+                  <HostParameterSet />
+                </Connector>
+                <DeviceParameterSet />
+              </DeviceType>
+            </Device>
+          </data>
+          <data name="configurations" handleUnknown="discard">
+            <configurations>
+              <configuration name="COM_3">
+                <addData>
+                  <data name="Device" handleUnknown="discard">
+                    <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+                      <DeviceType>
+                        <DeviceIdentification>
+                          <Type>92</Type>
+                          <Id>0000 0001</Id>
+                          <Version>3.4.0.0</Version>
+                        </DeviceIdentification>
+                        <Connector moduleType="257" role="child" interface="Common.PCI" connectorId="1">
+                          <HostParameterSet />
+                        </Connector>
+                        <Connector moduleType="92" interface="Common.Serial" connectorId="2" hostpath="1">
+                          <HostParameterSet>
+                            <Parameter ParameterId="9200" type="localTypes:BAUDRATE">
+                              <Attributes />
+                              <Value>57600</Value>
+                              <Name>Baudrate</Name>
+                            </Parameter>
+                            <Parameter ParameterId="9202" type="localTypes:PARITY">
+                              <Attributes />
+                              <Value>'NONE'</Value>
+                              <Name>Parity</Name>
+                            </Parameter>
+                            <Parameter ParameterId="9203" type="std:USINT">
+                              <Attributes />
+                              <Value>8</Value>
+                              <Name>DataBits</Name>
+                            </Parameter>
+                            <Parameter ParameterId="9204" type="std:USINT">
+                              <Attributes />
+                              <Value>1</Value>
+                              <Name>StopBits</Name>
+                            </Parameter>
+                            <Parameter ParameterId="9206" type="std:USINT">
+                              <Attributes />
+                              <Value>4</Value>
+                              <Name>ComPort</Name>
+                            </Parameter>
+                          </HostParameterSet>
+                        </Connector>
+                        <DeviceParameterSet />
+                      </DeviceType>
+                    </Device>
+                  </data>
+                  <data name="configurations" handleUnknown="discard">
+                    <configurations>
+                      <configuration name="Modbus_Master_COM_Port">
+                        <addData>
+                          <data name="Device" handleUnknown="discard">
+                            <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+                              <DeviceType>
+                                <DeviceIdentification>
+                                  <Type>90</Type>
+                                  <Id>0000 0002</Id>
+                                  <Version>3.5.5.0</Version>
+                                </DeviceIdentification>
+                                <Connector moduleType="93" role="child" interface="Common.Serial" connectorId="1">
+                                  <HostParameterSet />
+                                </Connector>
+                                <Connector moduleType="90" interface="Common.ModbusGenericSerialMaster" connectorId="2" hostpath="1">
+                                  <HostParameterSet>
+                                    <Parameter ParameterId="8000" type="std:BOOL">
+                                      <Attributes download="false" offlineaccess="read" />
+                                      <Value>true</Value>
+                                      <Name>ExtendedChannelConfig</Name>
+                                      <Description>Use the new Channel-Config format</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="8002" type="std:BOOL">
+                                      <Attributes onlineaccess="read" />
+                                      <Value>TRUE</Value>
+                                      <Name>OptimizationOn</Name>
+                                      <Description>the driver optimizes the io update</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="9000" type="std:STRING">
+                                      <Attributes />
+                                      <Value>'RTU'</Value>
+                                      <Name>Transmission</Name>
+                                    </Parameter>
+                                    <Parameter ParameterId="9001" type="std:DWORD">
+                                      <Attributes />
+                                      <Value>300</Value>
+                                      <Name>ResponseTimeout</Name>
+                                    </Parameter>
+                                    <Parameter ParameterId="9002" type="std:DWORD">
+                                      <Attributes />
+                                      <Value>10</Value>
+                                      <Name>TimeBetweenFrames</Name>
+                                    </Parameter>
+                                    <Parameter ParameterId="9004" type="std:BOOL">
+                                      <Attributes download="false" offlineaccess="read" />
+                                      <Value>FALSE</Value>
+                                      <Name>ASCIIsupported</Name>
+                                      <Description>Driver supports ASCII mode</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="9005" type="std:BOOL">
+                                      <Attributes />
+                                      <Value>TRUE</Value>
+                                      <Name>Auto-restart communication</Name>
+                                      <Description>auto-restart communication, if any communication error occured</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="9102" type="std:BOOL">
+                                      <Attributes />
+                                      <Value>TRUE</Value>
+                                      <Name>UseExtendedFunctionCodes</Name>
+                                      <Description>Flag if using the extended set of Modbus commands</Description>
+                                    </Parameter>
+                                  </HostParameterSet>
+                                </Connector>
+                                <DeviceParameterSet />
+                              </DeviceType>
+                            </Device>
+                          </data>
+                          <data name="configurations" handleUnknown="discard">
+                            <configurations>
+                              <configuration name="MV110_1TD">
+                                <addData>
+                                  <data name="Device" handleUnknown="discard">
+                                    <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+                                      <DeviceType>
+                                        <DeviceIdentification>
+                                          <Type>91</Type>
+                                          <Id>1628 0006</Id>
+                                          <Version>3.5.4.0</Version>
+                                        </DeviceIdentification>
+                                        <Connector moduleType="91" role="child" interface="Common.ModbusGenericSerialMaster" connectorId="1">
+                                          <HostParameterSet>
+                                            <Parameter ParameterId="8000" type="std:BOOL">
+                                              <Attributes download="false" offlineaccess="read" />
+                                              <Value>true</Value>
+                                              <Name>NewChannelConfig</Name>
+                                              <Description>Use the new Channel-Config format</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="9100" type="std:USINT">
+                                              <Attributes />
+                                              <Value>16</Value>
+                                              <Name>SlaveAddress</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="9101" type="std:DWORD">
+                                              <Attributes />
+                                              <Value>300</Value>
+                                              <Name>ResponseTimeout</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="9102" type="std:BOOL">
+                                              <Attributes />
+                                              <Value>TRUE</Value>
+                                              <Name>UseExtendedFunctionCodes</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="17825792" type="localTypes:CHANNEL_PACKED">
+                                              <Attributes />
+                                              <Value>
+                                                <Element name="FunctionCode">3</Element>
+                                                <Element name="ReadOffset">16#0046</Element>
+                                                <Element name="ReadLength">2</Element>
+                                                <Element name="WriteOffset">0</Element>
+                                                <Element name="WriteLength">0</Element>
+                                                <Element name="Trigger">5</Element>
+                                                <Element name="CycleTime">100</Element>
+                                                <Element name="ErrorHandling">True</Element>
+                                                <Element name="EnableRegisterBitMapping" />
+                                              </Value>
+                                              <Name>Rd.fF1</Name>
+                                              <Description>Измеренное значение физической величины 1го канала, ед.</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="21233734" type="std:REAL">
+                                              <Attributes channel="input" />
+                                              <Value />
+                                              <Name>Rd.fF1</Name>
+                                              <Description>Измеренное значение физической величины 1го канала, ед.</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="34603008" type="localTypes:CHANNEL_PACKED">
+                                              <Attributes />
+                                              <Value>
+                                                <Element name="FunctionCode">3</Element>
+                                                <Element name="ReadOffset">16#0056</Element>
+                                                <Element name="ReadLength">1</Element>
+                                                <Element name="WriteOffset">0</Element>
+                                                <Element name="WriteLength">0</Element>
+                                                <Element name="Trigger">5</Element>
+                                                <Element name="CycleTime">100</Element>
+                                                <Element name="ErrorHandling">True</Element>
+                                                <Element name="EnableRegisterBitMapping" />
+                                              </Value>
+                                              <Name>Rd.St</Name>
+                                              <Description>Статус измерения</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="38010966" type="std:INT">
+                                              <Attributes channel="input" />
+                                              <Value>
+                                                <Element name="_x0033_8010966_0" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_1" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_2" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_3" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_4" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_5" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_6" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_7" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_8" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_9" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_10" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_11" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_12" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_13" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_14" desc="Статус измерения">FALSE</Element>
+                                                <Element name="_x0033_8010966_15" desc="Статус измерения">FALSE</Element>
+                                              </Value>
+                                              <Name>Rd.St</Name>
+                                              <Description>Статус измерения</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="1879052288" type="std:UDINT">
+                                              <Attributes offlineaccess="read" onlineaccess="read" />
+                                              <Value>16#03050300</Value>
+                                              <Name>ConfigVersion</Name>
+                                            </Parameter>
+                                          </HostParameterSet>
+                                          <Custom>
+                                            <ModbusPresets showNumericPrefix="true" prefixFormat="{0:X04}">
+                                              <CoilPresets>
+                                              </CoilPresets>
+                                              <DiscreteInputPresets>
+                                              </DiscreteInputPresets>
+                                              <InputRegisterPresets>
+                                              </InputRegisterPresets>
+                                              <HoldingRegisterPresets>
+                                              </HoldingRegisterPresets>
+                                            </ModbusPresets>
+                                          </Custom>
+                                        </Connector>
+                                        <Connector moduleType="36536" interface="Mx110_Driver" connectorId="2" hostpath="1">
+                                          <HostParameterSet>
+                                            <Parameter ParameterId="1000" type="std:WORD">
+                                              <Attributes channel="input" />
+                                              <Value>
+                                                <Element name="_x0031_000_0">TRUE</Element>
+                                                <Element name="_x0031_000_1">FALSE</Element>
+                                                <Element name="_x0031_000_2">FALSE</Element>
+                                                <Element name="_x0031_000_3">FALSE</Element>
+                                                <Element name="_x0031_000_4">TRUE</Element>
+                                                <Element name="_x0031_000_5">FALSE</Element>
+                                                <Element name="_x0031_000_6">FALSE</Element>
+                                                <Element name="_x0031_000_7">FALSE</Element>
+                                                <Element name="_x0031_000_8">FALSE</Element>
+                                                <Element name="_x0031_000_9">FALSE</Element>
+                                                <Element name="_x0031_000_10">FALSE</Element>
+                                                <Element name="_x0031_000_11">FALSE</Element>
+                                                <Element name="_x0031_000_12">FALSE</Element>
+                                                <Element name="_x0031_000_13">FALSE</Element>
+                                                <Element name="_x0031_000_14">FALSE</Element>
+                                                <Element name="_x0031_000_15">FALSE</Element>
+                                              </Value>
+                                              <Name>in1</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="1001" type="std:WORD">
+                                              <Attributes channel="output" />
+                                              <Value>
+                                                <Element name="_x0031_001_0">TRUE</Element>
+                                                <Element name="_x0031_001_1">FALSE</Element>
+                                                <Element name="_x0031_001_2">FALSE</Element>
+                                                <Element name="_x0031_001_3">FALSE</Element>
+                                                <Element name="_x0031_001_4">TRUE</Element>
+                                                <Element name="_x0031_001_5">FALSE</Element>
+                                                <Element name="_x0031_001_6">FALSE</Element>
+                                                <Element name="_x0031_001_7">FALSE</Element>
+                                                <Element name="_x0031_001_8">FALSE</Element>
+                                                <Element name="_x0031_001_9">FALSE</Element>
+                                                <Element name="_x0031_001_10">FALSE</Element>
+                                                <Element name="_x0031_001_11">FALSE</Element>
+                                                <Element name="_x0031_001_12">FALSE</Element>
+                                                <Element name="_x0031_001_13">FALSE</Element>
+                                                <Element name="_x0031_001_14">FALSE</Element>
+                                                <Element name="_x0031_001_15">FALSE</Element>
+                                              </Value>
+                                              <Name>out1</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="393218" type="std:STRING">
+                                              <Attributes offlineaccess="read" onlineaccess="read" />
+                                              <Value>'Owen'</Value>
+                                              <Name>Vendor</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="393219" type="std:STRING">
+                                              <Attributes offlineaccess="read" onlineaccess="read" />
+                                              <Value>'MV110_1TD_Driver'</Value>
+                                              <Name>ModelName</Name>
+                                            </Parameter>
+                                          </HostParameterSet>
+                                        </Connector>
+                                        <DeviceParameterSet />
+                                      </DeviceType>
+                                    </Device>
+                                  </data>
+                                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                                    <ObjectId>09b8112e-be2f-4ff1-9a70-3adda7c9cd14</ObjectId>
+                                  </data>
+                                </addData>
+                              </configuration>
+                              <configuration name="Out_MU110_16R">
+                                <addData>
+                                  <data name="Device" handleUnknown="discard">
+                                    <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+                                      <DeviceType>
+                                        <DeviceIdentification>
+                                          <Type>91</Type>
+                                          <Id>0000 0001</Id>
+                                          <Version>3.5.4.0</Version>
+                                        </DeviceIdentification>
+                                        <Connector moduleType="91" role="child" interface="Common.ModbusGenericSerialMaster" connectorId="1">
+                                          <HostParameterSet>
+                                            <Parameter ParameterId="8000" type="std:BOOL">
+                                              <Attributes download="false" offlineaccess="read" />
+                                              <Value>true</Value>
+                                              <Name>NewChannelConfig</Name>
+                                              <Description>Use the new Channel-Config format</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="9100" type="std:USINT">
+                                              <Attributes />
+                                              <Value>32</Value>
+                                              <Name>SlaveAddress</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="9101" type="std:DWORD">
+                                              <Attributes />
+                                              <Value>300</Value>
+                                              <Name>ResponseTimeout</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="9102" type="std:BOOL">
+                                              <Attributes />
+                                              <Value>TRUE</Value>
+                                              <Name>UseExtendedFunctionCodes</Name>
+                                            </Parameter>
+                                            <Parameter ParameterId="17825792" type="localTypes:CHANNEL_PACKED">
+                                              <Attributes />
+                                              <Value>
+                                                <Element name="FunctionCode">16</Element>
+                                                <Element name="ReadOffset">0</Element>
+                                                <Element name="ReadLength">0</Element>
+                                                <Element name="WriteOffset">16#0032</Element>
+                                                <Element name="WriteLength">1</Element>
+                                                <Element name="Trigger">5</Element>
+                                                <Element name="CycleTime">100</Element>
+                                                <Element name="ErrorHandling">true</Element>
+                                                <Element name="EnableRegisterBitMapping" />
+                                              </Value>
+                                              <Name>Channel 0</Name>
+                                              <Description>ChannelConfig</Description>
+                                            </Parameter>
+                                            <Parameter ParameterId="25428018" type="std:ARRAY[0..0] OF WORD">
+                                              <Attributes channel="output" />
+                                              <Value>
+                                                <Element name="_x0032_5428018_0_0_0_0">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_1">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_2">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_3">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_4">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_5">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_6">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_7">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_8">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_9">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_10">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_11">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_12">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_13">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_14">FALSE</Element>
+                                                <Element name="_x0032_5428018_0_0_0_15">FALSE</Element>
+                                              </Value>
+                                              <Name>Channel 0</Name>
+                                              <Description>Write Multiple Registers</Description>
+                                              <Mapping>Application.iOutDiscrets</Mapping>
+                                            </Parameter>
+                                            <Parameter ParameterId="1879052288" type="std:UDINT">
+                                              <Attributes offlineaccess="read" onlineaccess="read" />
+                                              <Value>16#03050300</Value>
+                                              <Name>ConfigVersion</Name>
+                                            </Parameter>
+                                          </HostParameterSet>
+                                          <Custom>
+                                            <ModbusPresets showNumericPrefix="true" prefixFormat="{0:X04}">
+                                              <CoilPresets>
+                                                <Preset offset="1">Default</Preset>
+                                                <Preset offset="5">Nr 5</Preset>
+                                                <Preset offset="7">qwert</Preset>
+                                              </CoilPresets>
+                                              <DiscreteInputPresets>
+                                                <Preset offset="1">Default</Preset>
+                                                <Preset offset="5">Bit 5</Preset>
+                                                <Preset offset="7">qwert</Preset>
+                                              </DiscreteInputPresets>
+                                              <InputRegisterPresets>
+                                                <Preset offset="3">text zu 3</Preset>
+                                                <Preset offset="5" langRef="preset:presetDesc5">sbhgfdf</Preset>
+                                                <Preset offset="7">qwert</Preset>
+                                              </InputRegisterPresets>
+                                              <HoldingRegisterPresets>
+                                                <Preset offset="1">Default</Preset>
+                                                <Preset offset="2" langRef="preset:presetDesc5">mitSprache</Preset>
+                                              </HoldingRegisterPresets>
+                                            </ModbusPresets>
+                                          </Custom>
+                                        </Connector>
+                                        <DeviceParameterSet />
+                                      </DeviceType>
+                                    </Device>
+                                  </data>
+                                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                                    <ObjectId>c810ca94-e231-4d00-b368-fae464606727</ObjectId>
+                                  </data>
+                                </addData>
+                              </configuration>
+                            </configurations>
+                          </data>
+                          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                            <ObjectId>6d6252c1-a463-4eb9-997d-734812e26b42</ObjectId>
+                          </data>
+                        </addData>
+                      </configuration>
+                    </configurations>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>834449a9-d19a-44e3-a75e-48f12ba49d3d</ObjectId>
+                  </data>
+                </addData>
+              </configuration>
+            </configurations>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>bf8ba48e-4d0b-4859-96eb-770a131e3907</ObjectId>
+          </data>
+        </addData>
+      </configuration>
+    </configurations>
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="Device" ObjectId="bf8ba48e-4d0b-4859-96eb-770a131e3907">
+          <Object Name="Application" ObjectId="1e8c8e4f-86e1-4309-b3d2-8f30b8d3ced7">
+            <Object Name="Менеджер библиотек" ObjectId="1f56980b-8c34-4a57-bac6-2a37a58a0389" />
+            <Object Name="PLC_PRG" ObjectId="a1063c3b-bfc1-498e-abeb-b46f42e9ce3c">
+              <Object Name="blinkJob" ObjectId="2febc1eb-f499-4d72-8dd6-13704e006dcd" />
+              <Object Name="a_read" ObjectId="8a22cc63-5fe0-44f8-8467-1b127d222e5c" />
+              <Object Name="z_write" ObjectId="5ad9eb16-7b51-420e-8e76-280d66ffe135" />
+              <Object Name="y_mach_table" ObjectId="43a6022d-1995-4326-a69b-773e9550a64c" />
+              <Object Name="b_tara" ObjectId="84a3e7b8-1bed-4be5-99d2-94c3694acfe5" />
+            </Object>
+            <Object Name="MainTask" ObjectId="af8daa94-1069-41d1-8507-2da5c6c8eee7" />
+            <Object Name="VISU_TASK" ObjectId="3a64766b-b762-423b-a550-ea60c31eead7" />
+            <Folder Name="modules">
+              <Object Name="dfa" ObjectId="8a0b64e8-34bc-4c3d-a18b-8a13deb98a2d">
+                <Object Name="endEnter" ObjectId="bee81a6b-ea0a-40b3-8fb4-6a1beea6ef22" />
+                <Object Name="exec" ObjectId="6d8aeac2-8287-44e9-b7cd-613cde17569c" />
+                <Object Name="finishTransition" ObjectId="0938e404-0e18-4449-a82b-5630f82649c8" />
+              </Object>
+              <Object Name="switch" ObjectId="837144be-4a6f-42c3-add1-f230135a7f48">
+                <Object Name="allOff" ObjectId="c097e0a5-95cd-4745-943b-3119daadc8ec" />
+                <Object Name="on" ObjectId="1638610e-2235-46ed-92c7-c7e78d1e6f8b" />
+                <Object Name="getCodeIdx" ObjectId="e32947eb-d577-4a91-8cf6-2a27548af9d5" />
+                <Object Name="isPumpRun" ObjectId="d3deaf2b-d34d-45fd-9740-4dca6153ec62" />
+                <Object Name="matchTable" ObjectId="d57ff8fa-88e8-4dd6-80af-3938cf1b66c1" />
+              </Object>
+              <Object Name="list" ObjectId="d2a26bb6-bc43-404c-a13e-c7cabe90e95c">
+                <Object Name="getPrgIdx" ObjectId="b0d6b491-22a4-4bda-942c-f313ecc41c1c" />
+                <Object Name="getLineFromPrgArr" ObjectId="103db660-e484-4832-a7cb-3ab0eb29d458" />
+                <Object Name="stop" ObjectId="15ce24ad-6252-47a1-98e0-5ff2b15fa8f6" />
+                <Object Name="checkPrgArr" ObjectId="0f0d2641-9320-4a00-aa3e-a226d2292160" />
+                <Object Name="clearList" ObjectId="4c3aba0a-280f-41f0-bfeb-157417f7be3c" />
+                <Object Name="clearLine" ObjectId="8dfccb57-f560-4c0f-8514-d61b32e115a6" />
+                <Object Name="writeLine" ObjectId="f565a3b1-88d8-4044-9934-dfed731c3e5b" />
+                <Object Name="keepGoing" ObjectId="cb7caec3-e13e-431e-9796-f7b798b2c778" />
+                <Object Name="next" ObjectId="1feac098-c8e1-4aa4-bdb2-79d617cf3922" />
+                <Object Name="start" ObjectId="6701be80-7379-424b-a0ad-8219332ae2bb" />
+                <Object Name="man_cmp_mode_job" ObjectId="4cd69c32-d486-469d-bb12-fa43f9cec764" />
+                <Object Name="clean_counters" ObjectId="c074f7cf-a481-43de-917d-06a75172d7a5" />
+                <Object Name="man_mode_count" ObjectId="7244edfb-518d-481a-9dd7-d7194b80e885" />
+                <Object Name="man_counters_init" ObjectId="396f672f-3c7d-4f40-9968-3a9854c806e3" />
+              </Object>
+              <Object Name="logger" ObjectId="a1494be5-c5b7-439a-89dc-720d10db7f86">
+                <Object Name="exitLog" ObjectId="5a7998fa-f65c-4e30-9ed4-61731dd6d3f3" />
+                <Object Name="setPath" ObjectId="c0a3d83d-da5d-4cce-a6af-33a7a14ef663" />
+                <Object Name="write" ObjectId="e35d544c-c58c-4e96-8c54-da71b1d10501" />
+                <Object Name="now" ObjectId="51309518-c633-4b95-b900-6fa2dcdcee76" />
+                <Object Name="writeStat" ObjectId="0eb09bcb-08ce-4609-b161-4d5afe6cfaf0" />
+                <Object Name="init" ObjectId="ab593112-a882-43db-9b52-d5fa1684bf9a" />
+              </Object>
+              <Object Name="filter" ObjectId="3a3767c5-5487-4911-89d1-72a4d57f0484">
+                <Object Name="array_push" ObjectId="ef80bdfb-0e09-45cb-a617-838f421413d4" />
+                <Object Name="isStable" ObjectId="ff9ae61a-f9bc-45ba-94de-3379d8c26a25" />
+                <Object Name="clean" ObjectId="a1cdcf68-e524-4447-b34a-6052799717ef" />
+                <Object Name="count" ObjectId="3425cab6-554a-45e3-8115-f233a2777792" />
+              </Object>
+            </Folder>
+            <Object Name="component" ObjectId="25ce6865-2820-4e34-b4b4-d336a5eb0e6e" />
+            <Object Name="config" ObjectId="d1282dc0-e21a-4f3a-b3b0-e2d7d19bfbeb" />
+          </Object>
+          <Object Name="COM_3" ObjectId="834449a9-d19a-44e3-a75e-48f12ba49d3d">
+            <Object Name="Modbus_Master_COM_Port" ObjectId="6d6252c1-a463-4eb9-997d-734812e26b42">
+              <Object Name="MV110_1TD" ObjectId="09b8112e-be2f-4ff1-9a70-3adda7c9cd14" />
+              <Object Name="Out_MU110_16R" ObjectId="c810ca94-e231-4d00-b368-fae464606727" />
+            </Object>
+          </Object>
+        </Object>
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>
