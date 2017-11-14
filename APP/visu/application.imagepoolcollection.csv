@@ -1,6 +1,7 @@
 ImagePool; ;logo_ant;logo_ant.png;
 ImagePool; ;mx9_back;mx9_back.jpg;
 ImagePool; ;back3d;back3d.jpg;
+ImagePool; ;tr;tr.png;
 ImagePool; ;matrix;matrix.jpg;
 __VisualizationStyle; ;RadioButtonUnchecked;radiobuttonunchecked.bmp;
 __VisualizationStyle; ;RadioButtonChecked;radiobuttonchecked.bmp;
